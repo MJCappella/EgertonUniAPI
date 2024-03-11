@@ -30,4 +30,4 @@ def get_faculties():
     }
     faculty_list.append(faculty_data)
 
-  return jsonify('faculties': faculty_list)
+  return jsonify({'faculties':faculty_list})
