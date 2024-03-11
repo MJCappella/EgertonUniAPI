@@ -1,33 +1,34 @@
 from flask import Flask, jsonify, request, url_for
-import mysql-connector
+import mysql.connector
 
 app = Flask(__name__)
-app = SQLAlchemy(db)
 
-db = mysql.connector.connect(
-  host = "localhost"
-  user = "root"
-  passwd = ""
-)
+#MySQL connection configuration
+db_config = {
+  'host': "localhost",
+  'user': "root",
+  'passwd': "",
+  'database': "egertonapi",
+}
 
-cur = db.cursor()
-cur.execute()
+conn = mysql.connector.connect(**db_config)
+cursor = conn.cursor()
 
-@app.route("/")
-def home():
-  return 
+# API endpoints
+@app.route("/faculties", methods=['GET'])
+def get_faculties():
+  query = "SELECT * FROM faculties"
+  cursor.execute(query)
+  faculties = cursor.fetchall()
 
-@app.route("/faculties")
-def faculties():
-  faculties = (SELECT * FROM faculties)
-  return json(faculties)
+  faculty_list = []
+  for faculty in faculties:
+    faculty_data = {
+      'id': faculty[0],
+      'name': faculty[1],
+      'no_of_departments': faculty[2],
+    }
+    faculty_list.append(faculty_data)
 
-@app.route("/departments")
-def departments():
-  departments = (SELECT * FROM departments)
-  return json(departments)
+  return jsonify('faculties': faculty_list)
 
-@app.route("/programmes")
-def programmes():
-  programmes = (SELECT * FROM programmes)
-  return json(programmes)
