@@ -5,10 +5,10 @@ app = Flask(__name__)
 
 #MySQL connection configuration
 db_config = {
-  'host': "localhost",
-  'user': "root",
-  'passwd': "",
-  'database': "egertonapi",
+  'host': 'localhost',
+  'user': 'root',
+  'passwd': '',
+  'database': 'egertonapi',
 }
 
 conn = mysql.connector.connect(**db_config)
@@ -31,4 +31,3 @@ def get_faculties():
     faculty_list.append(faculty_data)
 
   return jsonify('faculties': faculty_list)
-
