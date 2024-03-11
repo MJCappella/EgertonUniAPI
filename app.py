@@ -19,12 +19,15 @@ def home():
 
 @app.route("/faculties")
 def faculties():
-  return 
+  faculties = (SELECT * FROM faculties)
+  return json(faculties)
 
 @app.route("/departments")
 def departments():
-  return 
+  departments = (SELECT * FROM departments)
+  return json(departments)
 
 @app.route("/programmes")
 def programmes():
-  return 
+  programmes = (SELECT * FROM programmes)
+  return json(programmes)
