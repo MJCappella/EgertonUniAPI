@@ -51,5 +51,24 @@ def get_departments():
 
   return jsonify({'departments':department_list})
 
+
+
+@app.route("/programmes", methods=['GET'])
+def get_programmes():
+  query = "SELECT * FROM programmes"
+  cursor.execute(query)
+  programmes = cursor.fetchall()
+
+  programmes_list = []
+  for programme in programmes:
+    programme_data = {
+      'id': programmes[0],
+      'name': programmes[1],
+      'dept_id': programmes[2],
+    }
+    programmes_list.append(programme_data)
+
+  return jsonify({'programmes':programmes_list})
+
 if __name = "__main__":
   run(app)
