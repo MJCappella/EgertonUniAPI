@@ -50,3 +50,6 @@ def get_departments():
     department_list.append(department_data)
 
   return jsonify({'departments':department_list})
+
+if __name = "__main__":
+  run(app)
