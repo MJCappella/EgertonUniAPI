@@ -45,7 +45,7 @@ def get_departments():
     department_data = {
       'id': department[0],
       'name': department[1],
-      'no_of_departments': department[2],
+      'faculty_id': department[2],
     }
     department_list.append(department_data)
 
