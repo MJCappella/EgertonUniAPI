@@ -31,3 +31,22 @@ def get_faculties():
     faculty_list.append(faculty_data)
 
   return jsonify({'faculties':faculty_list})
+
+
+
+@app.route("/departments", methods=['GET'])
+def get_departments():
+  query = "SELECT * FROM departments"
+  cursor.execute(query)
+  departments = cursor.fetchall()
+
+  departments_list = []
+  for department in departments:
+    department_data = {
+      'id': department[0],
+      'name': department[1],
+      'no_of_departments': department[2],
+    }
+    department_list.append(department_data)
+
+  return jsonify({'departments':department_list})
